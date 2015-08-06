@@ -8,6 +8,8 @@
 import curses
 
 class graphics:
+    """A graphics class that acts as a wrapper for
+    curses"""
     def __init__(self):
         self.screen = curses.initscr()
         curses.noecho()

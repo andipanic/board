@@ -14,14 +14,14 @@ def color(text, color):
     return result
 
 class Entity:
-    def __init__(self,char,board=None): 
-        self.char = char
+    def __init__(self,character,board=None): 
+        self.character = character
         self.board = board
         self.x,self.y = self.get_random_spot()
 
     def place(self, x, y):
-        spot = self.board.spots[x][y]
-        spot.char = self.char
+        spot = self.board.spots[y][x]
+        spot.character = self.character
 
     def get_valid_moves(self, x, y):
         moves = set()
@@ -44,7 +44,7 @@ class Entity:
         self.place(self.x, self.y)
 
     def get_spot(self):
-        spot = self.board.spots[self.x][self.y]
+        spot = self.board.spots[self.y][self.x]
         return spot
 
     def get_random_spot(self):
@@ -57,37 +57,57 @@ class Entity:
         self.place(self.x,self.y)
 
 if __name__ == '__main__':
-    board = Board(24,24)
-    board.display()
-    a = Entity(color("A","yellow"),board)
-    b = Entity(color("B","green"),board)
-    c = Entity(color("C","white"),board)
-    d = Entity(color("D","black"),board)
-    a()
-    b()
-    c()
-    d()
-    board.display()
-    count = 0
-    colors = {"BLACK", "RED", "GREEN", "YELLOW", "BLUE", "MAGENTA", "CYAN", "WHITE", "RESET"}
-    junk = string.punctuation + string.ascii_letters + " "
-    while count <= 10000:
-        a.move_random(color(random.choice(junk),random.sample(colors,1)[0]))
-        b.move_random(color(random.choice(junk),random.sample(colors,1)[0]))
-        c.move_random(color(random.choice(junk),random.sample(colors,1)[0]))
-        d.move_random(color(random.choice(junk),random.sample(colors,1)[0]))
-        count_d = "Count: " + str(count)
-        vma = "Valid Moves A: " + str(a.get_valid_moves(a.x,a.y))
-        vmb = "Valid Moves B: " + str(b.get_valid_moves(b.x,b.y))
-        vmc = "Valid Moves C: " + str(c.get_valid_moves(c.x,c.y))
-        vmd = "Valid Moves D: " + str(d.get_valid_moves(d.x,d.y))
-        #os.system('clear')
-        #board.display()
-        #print(count_d + "\n" + vma + "\n" + vmb +"\n" + vmc + "\n" + vmd)
-        #print(junk)
-        count+=1
-        #time.sleep(.1)
-
-    os.system('clear')
-    board.display()
+    picture = 0
+    while picture <= 1000000000:
+        board = Board(104,55)
+        a = b = c = d = e = f = g = Entity("_",board)
+        a()
+        b()
+        c()
+        d()
+        e()
+        f()
+        g()
+        count = 0
+        colors = {"BLACK", "RED", "GREEN", "YELLOW", "BLUE", "MAGENTA", "CYAN", "WHITE", "RESET"}
+        junk = string.punctuation + string.ascii_letters + " "
+        a.color = random.sample(colors,1)[0]
+        a.character = random.choice(junk)
+        b.color = random.sample(colors,1)[0]
+        b.character = random.choice(junk)
+        c.color = random.sample(colors,1)[0]
+        c.character = random.choice(junk)
+        d.color = random.sample(colors,1)[0]
+        d.character = random.choice(junk)
+        e.color = random.sample(colors,1)[0]
+        e.character = random.choice(junk)
+        f.color = random.sample(colors,1)[0]
+        f.character = random.choice(junk)
+        g.color = random.sample(colors,1)[0]
+        g.character = random.choice(junk)
+        while count <= 1500:
+            a.move_random(color(a.character,a.color))
+            b.move_random(color(b.character,b.color))
+            c.move_random(color(c.character,c.color))
+            d.move_random(color(d.character,d.color))
+            e.move_random(color(e.character,e.color))
+            f.move_random(color(f.character,f.color))
+            g.move_random(color(g.character,g.color))
+            count_d = "Count: " + str(count)
+            vma = "Valid Moves A: " + str(a.get_valid_moves(a.x,a.y))
+            vmb = "Valid Moves B: " + str(b.get_valid_moves(b.x,b.y))
+            vmc = "Valid Moves C: " + str(c.get_valid_moves(c.x,c.y))
+            vmd = "Valid Moves D: " + str(d.get_valid_moves(d.x,d.y))
+            #os.system('clear')
+            #board.display()
+            #print(count_d + "\n" + vma + "\n" + vmb +"\n" + vmc + "\n" + vmd)
+            #print(junk)
+            count+=1
+            #time.sleep(.1)
+        count = 0
+        picture += 1
+        os.system('clear')
+        board.display()
+        time.sleep(1)
+    #print(count_d + "\n" + vma + "\n" + vmb +"\n" + vmc + "\n" + vmd)
 
